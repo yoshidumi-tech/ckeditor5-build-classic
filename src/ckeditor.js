@@ -18,6 +18,7 @@ import Heading from '@ckeditor/ckeditor5-heading/src/heading';
 import Image from '@ckeditor/ckeditor5-image/src/image';
 import ImageCaption from '@ckeditor/ckeditor5-image/src/imagecaption';
 import ImageStyle from '@ckeditor/ckeditor5-image/src/imagestyle';
+import ImageResize from '@ckeditor/ckeditor5-image/src/imageresize';
 import ImageToolbar from '@ckeditor/ckeditor5-image/src/imagetoolbar';
 import ImageUpload from '@ckeditor/ckeditor5-image/src/imageupload';
 import Indent from '@ckeditor/ckeditor5-indent/src/indent';
@@ -29,6 +30,7 @@ import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefrom
 import Table from '@ckeditor/ckeditor5-table/src/table';
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
 import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation';
+import FontColor from '@ckeditor/ckeditor5-font/src/fontcolor';
 
 export default class ClassicEditor extends ClassicEditorBase {}
 
@@ -46,6 +48,7 @@ ClassicEditor.builtinPlugins = [
 	Image,
 	ImageCaption,
 	ImageStyle,
+	ImageResize,
 	ImageToolbar,
 	ImageUpload,
 	Indent,
@@ -56,7 +59,8 @@ ClassicEditor.builtinPlugins = [
 	PasteFromOffice,
 	Table,
 	TableToolbar,
-	TextTransformation
+	TextTransformation,
+	FontColor
 ];
 
 // Editor configuration.
@@ -70,6 +74,7 @@ ClassicEditor.defaultConfig = {
 			'link',
 			'bulletedList',
 			'numberedList',
+			'fontColor',
 			'|',
 			'indent',
 			'outdent',
@@ -84,10 +89,16 @@ ClassicEditor.defaultConfig = {
 	},
 	image: {
 		toolbar: [
-			'imageStyle:full',
-			'imageStyle:side',
+			'imageStyle:alignLeft',
+			'imageStyle:alignCenter',
+			'imageStyle:alignRight',
 			'|',
 			'imageTextAlternative'
+		],
+		styles: [
+			'alignLeft',
+			'alignCenter',
+			'alignRight'
 		]
 	},
 	table: {
@@ -97,6 +108,7 @@ ClassicEditor.defaultConfig = {
 			'mergeTableCells'
 		]
 	},
+	// https://github.com/ckeditor/ckeditor5/issues/1812#issuecomment-552471067
 	// This value must be kept in sync with the language defined in webpack.config.js.
 	language: 'en'
 };
